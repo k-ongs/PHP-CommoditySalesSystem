@@ -1,0 +1,78 @@
+.showPicture {
+    width: 300px;
+    height: 50px;
+    font-size: 0px;
+}
+
+.showPicture img {
+    margin: 0 5px;
+    border: 0px;
+    box-sizing: border-box;
+}
+
+.showPicture img.active {
+    border: 2px solid #000;
+}
+.showPicture img:hover {
+    cursor: pointer;
+    border: 2px solid #000;
+}
+.showTil{
+    font-size: 22px;
+    font-weight: bold;
+
+}
+.showprice{
+    color: #F40;
+    font-size: 16px;
+    font-weight: 700;
+}
+.showM{
+    display: inline-block;
+    font-size: 14px;
+    color: #888;
+    padding: 0 30px;
+    border-right: 1px solid #ccc;
+}
+.quantity span{
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+}
+.quantity span.nums{
+    width: 60px;
+    text-align: center;
+}
+
+.quantity #reduce:hover,.quantity #increase:hover{
+    cursor: pointer;
+    color: #F40;
+}
+.quantity #reduce.none,.quantity #increase.none{
+    color: #888;
+    cursor: default;
+}
+
+.buyNow,.joinShop{
+    color: #FFF;
+    box-sizing: border-box;
+    border: none;
+    font-size: 14px;
+    line-height: 40px;
+    width: 130px;
+    font-weight: 700;
+    height: 40px;
+    vertical-align: top;
+    background: #000;
+}
+
+.buyNow:hover,.joinShop:hover {
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+}
+.buyNow:active,.joinShop:active {
+    background-color: rgb(24, 23, 23);
+}

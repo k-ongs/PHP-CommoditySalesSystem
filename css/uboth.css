@@ -1,0 +1,137 @@
+html, body {
+    color: #000;
+    cursor: default;
+    font-size: 14px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f00;
+}
+a.active{
+    color: #f00;
+}
+.price{
+    color: #F40;
+    font-size: 16px;
+    font-weight: 700;
+}
+.cotitle{
+    font-size: 14px;
+    font-weight: bold;
+}
+.border {
+    border: 1px solid #000;
+}
+
+.menu{
+    border-right: 1px solid #000;
+}
+
+.menu > div{
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    border-bottom: 1px solid #000;
+}
+
+#button{
+    color: #FFF;
+    box-sizing: border-box;
+    border: none;
+    font-size: 14px;
+    line-height: 35px;
+    width: 120px;
+    font-weight: 700;
+    height: 35px;
+    vertical-align: top;
+    background: #000;
+    margin: 10px 0;
+}
+
+#button:hover {
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+}
+#button:active {
+    background-color: rgb(24, 23, 23);
+}
+
+.biank{
+    margin-bottom: 10px;
+    padding: 10px 0;
+}
+
+.quantity{
+    padding-right: 10px;
+    text-align: right;
+}
+.quantity span{
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+}
+
+.quantity #reduce:hover,.quantity #increase:hover{
+    cursor: pointer;
+    color: #F40;
+}
+.quantity #reduce.none,.quantity #increase.none{
+    color: #888;
+    cursor: default;
+}
+.quantity > a{
+    text-align: center;
+    display: inline-block;
+    color: #FFF;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 30px;
+    width: 80px;
+    font-weight: 700;
+    height: 30px;
+    background: #000;
+    margin: 10px 0;
+}
+
+.quantity > a:hover {
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+}
+.quantity > a:active {
+    background-color: rgb(24, 23, 23);
+}
+.buttona > a{
+    text-align: center;
+    display: inline-block;
+    color: #FFF;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 30px;
+    width: 70px;
+    font-weight: 700;
+    height: 30px;
+    background: #000;
+}
+.buttona > a:hover {
+    cursor: pointer;
+    background-color: rgb(51, 51, 51);
+}
+.buttona > a:active {
+    background-color: rgb(24, 23, 23);
+}
