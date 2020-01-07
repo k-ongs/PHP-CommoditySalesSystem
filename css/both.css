@@ -171,6 +171,7 @@ a.active{
 
 .seckill img {
     height: 90%;
+    width: 90%;
 }
 
 .hotCm .price, .seckill .price {
@@ -194,4 +195,19 @@ a.active{
 .seckill .bars>div {
     height: 10px;
     background-color: tomato;
+}
+
+.seckill-price{
+    height: 40px;
+    width: 80px;
+    overflow: hidden;
+    word-break: keep-all !important;
+}
+.seckill .asdasjkls{
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }

@@ -27,7 +27,7 @@
 					<tr class="border-bottom">         
 						<td class="padding-a" height="100" colspan="2" nowrap>
 							<?PHP
-								foreach(select($mysql,'tb_seckill', 'a join tb_commodity b on a.cId = b.cId where a.startDate <=now() and a.endDate >= now() limit 8','a.nums,a.num,a.recommends,b.cId,b.name,b.price,b.figure') as $val)
+								foreach(select($mysql,'tb_seckill', 'a join tb_commodity b on a.cId = b.cId where a.startDate <=now() and a.endDate >= now() limit 6','a.nums,a.num,a.recommends,b.cId,b.name,b.price,b.figure') as $val)
 								{
 							?>
 							<table class="seckill" width="293" border="0" cellspacing="0" cellpadding="0">
@@ -36,7 +36,7 @@
 										<a href="details.php?type=2&id=<?PHP echo $val['cId'] ?>"><img src="<?PHP echo $val['figure'] ?>"></a>
 									</td>
 									<td class="padding-left-8" style="padding-top: 10px; font-size: 16px; font-weight: 600;" width="140" height="60" colspan="2" valign="top">
-										<a href="details.php?type=2&id=<?PHP echo $val['cId'] ?>"><?PHP echo mb_substr($val['name'], 0, 16); ?></a>
+										<a class="asdasjkls" href="details.php?type=2&id=<?PHP echo $val['cId'] ?>"><?PHP echo $val['name']; ?></a>
 									</td>
 								</tr>
 								<tr height="20">

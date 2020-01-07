@@ -55,7 +55,7 @@ $comInfo = select($mysql, 'tb_user_order', 'a join tb_commodity b on a.cId = b.c
                                 echo '<td><a>等待收货</a></td><td><a class="button none">等待收货</a></td>';
                             }else if($val['status'] == '3')
                             {
-                                echo '<td><a href="#">等待评价</a></td><td><a class="button none">等待评价</a></td>';
+                                echo '<td><a>等待评价</a></td><td><a class="button none">等待评价</a></td>';
                             }else
                             {
                                 echo '<td><a>已完成</a></td><td><a class="button none">已完成</a></td>';
