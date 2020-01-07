@@ -1,9 +1,17 @@
 <?PHP
 header("Content-type:text/html;charset=utf-8");
 session_start();
+$toUrlArr = array('index.php','login.php','register.php','classify.php','details.php');
+@$to = (int)$_GET['to'];
+@$id = (int)$_GET['id'];
+
+$toUrl = $toUrlArr[$to];
+if($id)
+	$toUrl .= '?id=' . $id;
+
 if(isset($_SESSION['userPass']) && isset($_SESSION['userName']) && isset($_SESSION['userId']))
 {
-	header("Location: index.php");
+	header("Location: " . $toUrl);
 	exit;
 }
 if(@$_POST['button'])
@@ -22,7 +30,7 @@ if(@$_POST['button'])
 	$_SESSION['userName'] = $userinfo[0]['userName'];
 	$_SESSION['userPass'] = $userinfo[0]['userPass'];
 
-	die(backMsg('登录成功！'));
+	die(jumpMsg('登录成功！',$toUrl));
 }
 
 ?>

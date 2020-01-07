@@ -97,7 +97,6 @@
 						echo '<div style="font-size: 24px; text-align:center;">暂无商品<div>';
 					}else{
 						$page_count = ceil($message_count / 8);
-						var_dump($page_count);
 						$page = $page > $page_count ? $page_count : $page;
 						$offset = ($page-1) * 8;
 						//分页查询 每页显示8条记录

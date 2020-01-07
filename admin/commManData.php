@@ -128,7 +128,7 @@
             if(delete($mysql, $tb, 'where cId=' . $id))
                 die(jumpMsg('删除商品成功！', $toUrl));
             else
-                die(jumpMsg('删除商品成功！', $toUrl));
+                die(jumpMsg('删除商品失败！', $toUrl));
         }
     }
 

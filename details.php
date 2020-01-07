@@ -1,19 +1,33 @@
 <?PHP 
-	header("Content-type:text/html;charset=utf-8");
+    header("Content-type:text/html;charset=utf-8");
 	session_start();
 	include 'conn.php';
     include 'functions.php';
+    @$type = (int)$_GET['type'];
     @$id = (int)$_GET['id'];
-    $userinfo = select($mysql, 'tb_commodity', 'where cId=' . $id);
+    $type = $type == 2 ? 2 : 1;
+    if($type == 1)
+        $userinfo = select($mysql, 'tb_commodity', 'where cId=' . $id);
+    else
+        $userinfo = select($mysql,'tb_seckill', 'a join tb_commodity b on a.cId = b.cId where a.startDate <=now() and a.endDate >= now() and a.cId=' . $id,'a.nums,a.num,a.recommends,b.cId,b.name,b.price,b.figure,b.ucId,b.sales,b.stock,b.sales');
     if(!$userinfo)
     {
         header("Location: classify.php");
 		exit;
     }
+    $shop = array();
     $userinfo = $userinfo[0];
     $comments = select($mysql, 'tb_comment', 'a join tb_s_user b on a.uId=b.uId where cId=' . $id,'a.*,b.userName');
     $similar = select($mysql, 'tb_commodity', 'where  ucId='. $userinfo['ucId'] .' and cId!=' . $id . ' limit 2');
     $pics = select($mysql,'tb_commodit_imgs', 'where cId='.$userinfo['cId']);
+    if(isset($_SESSION['userPass']) && isset($_SESSION['userName']) && isset($_SESSION['userId']))
+    {
+        $shop = select($mysql,'tb_user_shop', 'where cId='.$userinfo['cId'] .' and uId=' . $_SESSION['userId']);
+        if(!$shop)
+            $shop = array();
+        else
+            $shop = $shop[0];
+    }
 ?>
 <!doctype html>
 <html>
@@ -62,7 +76,8 @@
                                 </tr>
                                 <tr>
                                     <td width="50" height="35" align="right">价格：</td>
-                                    <td class="showprice">￥<span id="sprice"><?PHP echo $userinfo['price'] ?></span></td>
+                                    <td class="showprice">￥<span id="sprice">
+                                    <?PHP if($type == 2) echo number_format(($userinfo['recommends'] / 100) * $userinfo['price'],'2');else echo $userinfo['price']; ?></span><?PHP if($type == 2) echo '<span style="padding-left:10px; color: #888; font-size:13px;text-decoration: line-through;">原价：￥'.$userinfo['price'].'</span>'; ?></td>
                                 </tr>
                                 <tr>
                                     <td style="border-bottom: 1px solid #ccc;" height="70" colspan="2">
@@ -82,7 +97,15 @@
                                 <tr>
                                     <td height="50" colspan="2" align="center" valign="middle">
                                         <input onclick="buyNow()" class="buyNow" type="submit" name="button2" id="button2" value="立即购买">
-                                        <input onclick="joinShop()" class="joinShop" type="submit" name="button3" id="button3" value="加入购物车">
+                                    <?PHP
+                                        if(empty($shop))
+                                        {
+                                            echo '<input onclick="joinShop()" class="joinShop" type="submit" name="button3" id="button3" value="加入购物车">';
+                                        }else{
+                                            echo '<input onclick="quitShop()" class="joinShop" type="submit" name="button3" id="button3" value="移除购物车">';
+                                        }
+                                    ?>
+                                        
                                     </td>
                                 </tr>
                             </table>
@@ -157,8 +180,9 @@
     <br>
     <?PHP echoFooter(); ?>
     <script>
+        var cid = '<?PHP echo $userinfo['cId'] ?>';
         var loginEd = <?PHP if(!isset($_SESSION['userPass']) || !isset($_SESSION['userName']) || !isset($_SESSION['userId'])) echo 0; else echo 1;?>;
-        var price = <?PHP echo $userinfo['price'] ?>;
+        var price = <?PHP if($type == 2) echo number_format(($userinfo['recommends'] / 100) * $userinfo['price'],'2');else echo $userinfo['price']; ?>;
         var stock = <?PHP echo $userinfo['stock'] ?>;
         function onAdd(){
             var pri = document.getElementById('sprice');
@@ -210,12 +234,11 @@
                 if(confirm("确定要购买该商品吗？"))
                 {
                     var nums = document.getElementById('Dnums').innerText;
-                    var id = <?PHP echo $userinfo['cId'] ?>;
-                    window.location.href = "detailsBuy.php?id="+id+"&num="+nums;
+                    window.location.href = "detailsData.php?type=<?PHP echo $type; ?>&mode=buy&id="+cid+"&num="+nums;
                 }
             }else{
                 alert("您还未登录，请先登录！");
-                window.location.href = "login.php";
+                window.location.href = "login.php?to=4&id="+cid;
             }
         }
         function joinShop()
@@ -224,12 +247,23 @@
                 if(confirm("确定要将此商品加入购物车吗？"))
                 {
                     var nums = document.getElementById('Dnums').innerText;
-                    var id = <?PHP echo $userinfo['cId'] ?>;
-                    window.location.href = "detailsJoinShop.php?id="+id+"&num="+nums;
+                    window.location.href = "detailsData.php?type=<?PHP echo $type; ?>&mode=join&id="+cid+"&num="+nums;
                 }
             }else{
                 alert("您还未登录，请先登录！");
-                window.location.href = "login.php";
+                window.location.href = "login.php?to=4&id="+cid;
+            }
+        }
+        function quitShop()
+        {
+            if(loginEd){
+                if(confirm("确定要将此商品移除购物车吗？"))
+                {
+                    window.location.href = "detailsData.php?mode=quit&id="+cid;
+                }
+            }else{
+                alert("您还未登录，请先登录！");
+                window.location.href = "login.php?to=4&id="+cid;
             }
         }
     </script>

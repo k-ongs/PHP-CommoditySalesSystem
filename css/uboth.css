@@ -78,6 +78,10 @@ a.active{
 }
 
 .quantity{
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
     padding-right: 10px;
     text-align: right;
 }
@@ -92,6 +96,14 @@ a.active{
     color: #F40;
 }
 .quantity #reduce.none,.quantity #increase.none{
+    color: #888;
+    cursor: default;
+}
+.quantity .reduce:hover,.quantity .increase:hover{
+    cursor: pointer;
+    color: #F40;
+}
+.quantity .reduce.none,.quantity .increase.none{
     color: #888;
     cursor: default;
 }
@@ -134,4 +146,8 @@ a.active{
 }
 .buttona > a:active {
     background-color: rgb(24, 23, 23);
+}
+.buttona > a.none,.quantity > a.none{
+    background-color: #ccc;
+    cursor: default;
 }

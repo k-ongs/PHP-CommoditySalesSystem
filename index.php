@@ -22,37 +22,37 @@
 				<table width="900" border="0" cellspacing="0" cellpadding="0">
 					<tr class="border-bottom">
 						<td class="padding-left-a border-bottom" height="40" style="font-size: 16px; font-weight: bold;">限时秒杀</td>
-						<td align="right"><a href="seckill.html" style="padding-right: 10px;">更多&gt;&gt;</a></td>
+						<td align="right"><a href="seckill.php" style="padding-right: 10px;">更多&gt;&gt;</a></td>
 					</tr>
 					<tr class="border-bottom">         
 						<td class="padding-a" height="100" colspan="2" nowrap>
 							<?PHP
-								for($i=0; $i<6; $i++)
+								foreach(select($mysql,'tb_seckill', 'a join tb_commodity b on a.cId = b.cId where a.startDate <=now() and a.endDate >= now() limit 8','a.nums,a.num,a.recommends,b.cId,b.name,b.price,b.figure') as $val)
 								{
 							?>
 							<table class="seckill" width="293" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td style="border-right: 1px solid #999;font-size: 0px;" width="150" height="150" rowspan="4" align="center" valign="middle">
-										<a href="details.html"><img src="img/comm.jpg"></a>
+										<a href="details.php?type=2&id=<?PHP echo $val['cId'] ?>"><img src="<?PHP echo $val['figure'] ?>"></a>
 									</td>
 									<td class="padding-left-8" style="padding-top: 10px; font-size: 16px; font-weight: 600;" width="140" height="60" colspan="2" valign="top">
-										<a href="details.html">雷姆手办雷姆手办雷姆手办雷姆手办</a>
+										<a href="details.php?type=2&id=<?PHP echo $val['cId'] ?>"><?PHP echo mb_substr($val['name'], 0, 16); ?></a>
 									</td>
 								</tr>
 								<tr height="20">
 									<td colspan="2">
 										<div class="bars">
-											<div style="width: 20%;"></div>
+											<div style="width: <?PHP echo $val['num']/$val['nums'] * 100 ?>%;"></div>
 										</div>
 									</td>
 								</tr>
 								<tr height="30">
-									<td class="padding-left-8">20%</td>
-									<td style="font-size: 12px;">已抢<span style="font-size: 14px; color: tomato;">100</span>件</td>
+									<td class="padding-left-8"><?PHP echo $val['num']/$val['nums'] * 100 ?>%</td>
+									<td style="font-size: 12px;">已抢<span style="font-size: 14px; color: tomato;"><?PHP echo $val['num'] ?></span>件</td>
 								</tr>
 								<tr>
-									<td class="padding-left-8 price">￥600</td>
-									<td class="original">￥1000</td>
+									<td class="padding-left-8 price">￥<?PHP echo number_format(($val['recommends'] / 100) * $val['price'],'2'); ?></td>
+									<td class="original">￥<?PHP echo $val['price'] ?></td>
 								</tr>
 							</table>
 							<?PHP

@@ -16,6 +16,9 @@ html,body{
     top: 0;
     bottom: 0;
     width: calc(100% - 50px);
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 .card-header{
     position: relative;
@@ -155,5 +158,24 @@ html,body{
     background-color: #fff;
 }
 .commMan .className:disabled,.commMan input:disabled,.commMan textarea:disabled{
+    border: none;
+}
+.seckill input[type="datetime-local"],.seckill input[type="text"]
+{
+    box-sizing: border-box;
+    font-size: 12px;
+    padding:5px;
+    border: 1px solid #000;
+    background-color: #fff;
+}
+.seckill input[type="datetime-local"]
+{
+    width:210px;
+}
+.seckill input[name="num"],.seckill input[name="recom"]
+{
+    width: 40px;
+}
+.seckill input:disabled{
     border: none;
 }

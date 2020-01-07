@@ -18,9 +18,10 @@
         <br>
         <div class="menu"><a id="menu0" onclick="onClickA(0,'classMan.php')">》分类管理</a></div>
         <div class="menu"><a id="menu1" onclick="onClickA(1,'commMan.php')" >》商品管理</a></div>
-        <div class="menu"><a id="menu2" onclick="onClickA(2,'orderMan.php')">》订单管理</a></div>
-        <div class="menu"><a id="menu3" onclick="onClickA(3,'userMan.php')">》用户管理</a></div>
-        <div class="menu"><a id="menu4" onclick="onClickA(4,'passMan.php')">》修改密码</a></div>
+        <div class="menu"><a id="menu2" onclick="onClickA(2,'seckillMan.php')" >》秒杀管理</a></div>
+        <div class="menu"><a id="menu3" onclick="onClickA(3,'orderMan.php')">》订单管理</a></div>
+        <div class="menu"><a id="menu4" onclick="onClickA(4,'userMan.php')">》用户管理</a></div>
+        <div class="menu"><a id="menu5" onclick="onClickA(5,'passMan.php')">》修改密码</a></div>
         <div class="menu"><a href="exit.php">》退出登录</a></div>
     </div>
     <div class="nav-right">
@@ -53,7 +54,7 @@
         function onClickA(id,url)
         {
             var i=0;
-            for(i=0; i<5; i++)
+            for(i=0; i<6; i++)
             {
                 if(i != id)
                     document.getElementById('menu'+i).classList.remove("active");
