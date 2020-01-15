@@ -118,14 +118,15 @@
 <form name="form1" id="form1" method="POST">
 	<div class="win">
 		<div class="title">管理员登录</div>
-		<br>
+		默认用户名：admin<br>
+		默认密码:123456
 		<div class="mode">
 			<span class="title">用户名:</span>
-			<span class="content"><input type="text" name="user" id="user"></span>
+			<span class="content"><input type="text" name="user" id="user" value="admin"></span>
 		</div>
 		<div class="mode">
 			<span class="title">密码:</span>
-			<span class="content"><input type="password" name="pass" id="pass"></span>
+			<span class="content"><input type="password" name="pass" id="pass" value="123456"></span>
 		</div>
 		<br>
 		<div class="mode">

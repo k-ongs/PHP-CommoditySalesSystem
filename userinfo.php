@@ -72,7 +72,7 @@
 		</tr>
 	</table>
 	<br>
-	<?PHP echoFooter(800); ?>
+	<?PHP echoFooter(800); //调用函数输出页脚，宽度为800像素 ?>
 </body>
 
 </html>

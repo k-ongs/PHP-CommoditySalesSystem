@@ -42,12 +42,12 @@
 								<tr height="20">
 									<td colspan="2">
 										<div class="bars">
-											<div style="width: <?PHP echo $val['num']/$val['nums'] * 100 ?>%;"></div>
+											<div style="width: <?PHP echo number_format($val['num']/$val['nums'] * 100,'2') ?>%;"></div>
 										</div>
 									</td>
 								</tr>
 								<tr height="30">
-									<td class="padding-left-8"><?PHP echo $val['num']/$val['nums'] * 100 ?>%</td>
+									<td class="padding-left-8"><?PHP echo number_format($val['num']/$val['nums'] * 100,'2') ?>%</td>
 									<td style="font-size: 12px;">已抢<span style="font-size: 14px; color: tomato;"><?PHP echo $val['num'] ?></span>件</td>
 								</tr>
 								<tr>
